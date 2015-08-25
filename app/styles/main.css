@@ -1,0 +1,28 @@
+body {
+
+  background: url("/app/images/12337058613.jpeg");
+}
+div {
+  display: block;
+  margin: 20px;
+  text-align: center;
+  align-items: center;
+}
+.form {
+  margin: 10px auto;
+}
+.container {
+  background: #00b3ee;
+  padding: 20px;
+  border: groove;
+  border-radius: 20px;
+  margin: 20px auto;
+  min-width: 240px;
+  display: inline-block;
+}
+.table tr th {
+  vertical-align: bottom;
+  border: 2px solid #0086b3;
+  padding: 10px;
+
+}
