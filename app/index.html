@@ -2,14 +2,16 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title> Harry Potter </title>
+    <title>User CRUD example</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="bower_components/intl-tel-input/build/css/intlTelInput.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,41 +24,73 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-      <div class="container">
-       <div>
-        <p><h3>New User Registration:</h3></p>
-
-         <span class="input-group-addon"> Enter Your Name: </span>
-        <div class="input-group input-group-lg name form">
-          <input type="text" class="form-control" placeholder="Username">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ng-href="#/">Lorem</a>
         </div>
 
-         <span class="input-group-addon"> Enter Your Email: </span>
-        <div class="input-group input-group-lg mail form">
-          <input type="text" class="form-control" placeholder="Email">
-        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-main-menu">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: $route.current.activeTab == 'list'}"><a ng-href="#/" role="button">List clients</a></li>
+            <li ng-class="{active: $route.current.activeTab == 'create'}"><a ng-href="#/client" role="button">Create new client</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-         <span class="input-group-addon"> Enter Your Telephone: </span>
-        <div class="input-group input-group-lg phone form">
-          <input type="text" class="form-control" placeholder="Phone">
-        </div>
-
-        <span class="input-group-addon"> Enter Your Adress: </span>
-        <div class="input-group input-group-lg adress form">
-          <input type="text" class="form-control" placeholder="Street">
-        </div>
-        <div class="input-group input-group-lg adress form">
-          <input type="text" class="form-control" placeholder="Sity">
-        </div>
-        <div class="input-group input-group-lg adress form">
-          <input type="text" class="form-control" placeholder="State">
-        </div>
-        <div class="input-group input-group-lg adress form">
-          <input type="text" class="form-control" placeholder="ZIP">
-        </div>
-          <a href="customers.html"><button type="button" class="btn btn-default navbar-btn">Ok!</button></a>
-       </div>
+    <!--Main content of a site-->
+    <div class="container-fluid" ng-controller="MainCtrl" role="main">
+      <div class="jumbotron">
+        <h1>Lorem ipsum dolor</h1>
+        <p>sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p></p>
       </div>
+      <div ng-view="main" class="row">
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9 col-md-offset-3">
+            <div class="row">
+              <div class="col-md-3">
+                <ul class="list-unstyled">
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <ul class="list-unstyled">
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <ul class="list-unstyled">
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <img data-src="holder.js/100%x127" class="img-circle" alt="To root" src="images/user.gif">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -80,13 +114,17 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/intl-tel-input/build/js/intlTelInput.min.js"></script>
+    <script src="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
+    <script src="bower_components/international-phone-number/releases/international-phone-number.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/edit.js"></script>
+    <script src="scripts/controllers/create.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

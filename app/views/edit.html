@@ -1,0 +1,79 @@
+<!--TODO: Remove copy-paste. use some like ngBindTemplate-->
+<div class="col-md-9 col-md-offset-2">
+  <form role="form" class="form-horizontal" name="createForm" novalidate ng-submit="editUser()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputName.$invalid && !createForm.inputName.$pristine && createForm.inputName.$touched, 'has-success': createForm.inputName.$valid && createForm.inputName.$touched}">
+          <label for="inputName" class="col-md-2 control-label">Name:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" ng-model="user.name" ng-pattern="/^[a-zA-Z]+/" required>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputName.$invalid && !createForm.inputName.$pristine && createForm.inputName.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-user"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputEmail.$invalid && !createForm.inputEmail.$pristine && createForm.inputEmail.$touched, 'has-success' : createForm.inputEmail.$valid && createForm.inputEmail.$touched}">
+          <label for="inputEmail" class="col-md-2 control-label">Email:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" ng-model="user.email" required>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputEmail.$invalid && !createForm.inputEmail.$pristine && createForm.inputEmail.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputPhone.$invalid && !createForm.inputPhone.$pristine && createForm.inputPhone.$touched, 'has-success' : createForm.inputPhone.$valid && createForm.inputPhone.$touched}">
+          <label for="inputPhone" class="col-md-2 control-label">Phone:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="Phone" ng-model="user.phone" international-phone-number default-country="us" responsive-dropdown="true">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputPhone.$invalid && !createForm.inputPhone.$pristine && createForm.inputPhone.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-phone"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputState.$invalid && !createForm.inputState.$pristine && createForm.inputState.$touched, 'has-success' : createForm.inputState.$valid && createForm.inputState.$touched}">
+          <label for="inputState" class="col-md-2 control-label">State:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputState" name="inputState" placeholder="State" ng-model="user.address.state" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputState.$invalid && !createForm.inputState.$pristine && createForm.inputState.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-globe"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputCity.$invalid && !createForm.inputCity.$pristine && createForm.inputCity.$touched, 'has-success' : createForm.inputCity.$valid && createForm.inputCity.$touched}">
+          <label for="inputCity" class="col-md-2 control-label">City:</label>
+          <div class="input-group has-feedback">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputCity" name="inputCity" placeholder="City" ng-model="user.address.city" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputCity.$invalid && !createForm.inputCity.$pristine && createForm.inputCity.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-home"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputStreet.$invalid && !createForm.inputStreet.$pristine && createForm.inputStreet.$touched, 'has-success' : createForm.inputStreet.$valid && createForm.inputStreet.$touched}">
+          <label for="inputStreet" class="col-md-2 control-label">Street:</label>
+          <div class="input-group has-feedback">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputStreet" name="inputStreet" placeholder="Street"  ng-model="user.address.street" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputStreet.$invalid && !createForm.inputStreet.$pristine && createForm.inputStreet.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-map-marker"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':createForm.inputZip.$invalid && !createForm.inputZip.$pristine && createForm.inputZip.$touched, 'has-success' : createForm.inputZip.$valid && createForm.inputZip.$touched}">
+          <label for="inputZip" class="col-md-2 control-label">Zip:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="Zip"  ng-model="user.address.zip" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="createForm.inputZip.$invalid && !createForm.inputZip.$pristine && createForm.inputZip.$touched"></span>
+            <span class="input-group-addon glyphicon glyphicon-barcode"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 col-md-offset-1">
+        <button type="submit" class="btn btn-primary">Save <span class="glyphicon glyphicon-save"></span></button>
+      </div>
+    </div>
+  </form>
+</div>

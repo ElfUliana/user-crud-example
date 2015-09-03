@@ -15,17 +15,25 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
-  ])
+    'ngTouch',
+    'internationalPhoneNumber'
+  ])//TODO: Add UserRepository service
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        activeTab: 'list'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/client', {
+        templateUrl: 'views/create.html',
+        controller: 'CreateCtrl',
+        activeTab: 'create'
+      })
+      .when('/client/:clientId', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl',
+        activeTab: 'edit'
       })
       .otherwise({
         redirectTo: '/'
