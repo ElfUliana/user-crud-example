@@ -1,0 +1,54 @@
+<div class="col-md-6 col-md-offset-3" infinite-scroll="page.getNextUsers()" infinite-scroll-distance="0" infinite-scroll-disable="page.paging.disabled || page.paging.complete" infinite-scroll-immediate-check="!page.paging.complete">
+  <h1>List users</h1>
+  <div class="row" ng-repeat="user in page.loaded">
+    <div class="col-md-4">
+      <div class="row" ng-if="user.name">
+        <label class="col-md-3">Name:</label>
+        <span class="col-md-9">{{user.name}}</span>
+      </div>
+      <div class="row" ng-if="user.email">
+        <label class="col-md-3">Email:</label>
+        <span class="col-md-9">{{user.email}}</span>
+      </div>
+      <div class="row" ng-if="user.phone">
+        <label class="col-md-3"><abbr title="Phone">P:</abbr></label>
+        <span class="col-md-9">{{user.phone}}</span>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <address ng-if="user.address">
+        <h4>Address:</h4>
+        <div class="row" ng-if="user.address.state">
+          <label class="col-md-3">State:</label>
+          <span class="col-md-9">{{user.address.state}}</span>
+        </div>
+        <div class="row" ng-if="user.address.city">
+          <label class="col-md-3">City:</label>
+          <span class="col-md-9">{{user.address.city}}</span>
+        </div>
+        <div class="row" ng-if="user.address.street">
+          <label class="col-md-3">Street:</label>
+          <span class="col-md-9">{{user.address.street}}</span>
+        </div>
+        <div class="row" ng-if="user.address.zip">
+          <label class="col-md-3">Zip:</label>
+          <span class="col-md-9">{{user.address.zip}}</span>
+        </div>
+      </address>
+    </div>
+    <div class="col-md-1">
+      <a ng-href="#/client/{{ user.id }}" role="button" class="btn btn-primary btn-md">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </a>
+    </div>
+  </div>
+  <div class="progress progress-striped active" ng-show="page.paging.disabled">
+    <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <div class="alert alert-danger" ng-show="page.paging.error">
+    <button type="button" class="close" aria-hidden="true" ng-click="closeAlert()">&times;</button>
+    <span class="glyphicon glyphicon-fire"></span> {{ page.paging.error.toString() }}
+  </div>
+</div>

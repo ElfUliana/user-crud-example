@@ -1,0 +1,83 @@
+<!--TODO: Remove copy-paste. use some like ngBindTemplate-->
+<div class="col-md-9 col-md-offset-2">
+  <h1>Edit user</h1>
+  <form role="form" class="form-horizontal" name="editForm" novalidate ng-submit="editUser(editForm)">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputName.$invalid && (editForm.$submitted || editForm.inputName.$touched), 'has-success': editForm.inputName.$valid && editForm.inputName.$touched}">
+          <label for="inputName" class="col-md-2 control-label">Name:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" ng-model="user.name" ng-pattern="/^[a-zA-Z]+/" required>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputName.$invalid && (editForm.$submitted || editForm.inputName.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-user"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputEmail.$invalid && (editForm.$submitted || editForm.inputEmail.$touched), 'has-success' : editForm.inputEmail.$valid && editForm.inputEmail.$touched}">
+          <label for="inputEmail" class="col-md-2 control-label">Email:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" ng-model="user.email" required>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputEmail.$invalid && (editForm.$submitted || editForm.inputEmail.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputPhone.$invalid && (editForm.$submitted || editForm.inputPhone.$touched), 'has-success' : editForm.inputPhone.$valid && editForm.inputPhone.$touched}">
+          <label for="inputPhone" class="col-md-2 control-label">Phone:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="Phone" ng-model="user.phone" international-phone-number default-country="us" responsive-dropdown="true">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputPhone.$invalid && (editForm.$submitted || editForm.inputPhone.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-phone"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputState.$invalid && (editForm.$submitted || editForm.inputState.$touched), 'has-success' : editForm.inputState.$valid && editForm.inputState.$touched}">
+          <label for="inputState" class="col-md-2 control-label">State:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputState" name="inputState" placeholder="State" ng-model="user.address.state" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputState.$invalid && (editForm.$submitted || editForm.inputState.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-globe"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputCity.$invalid && (editForm.$submitted || editForm.inputCity.$touched), 'has-success' : editForm.inputCity.$valid && editForm.inputCity.$touched}">
+          <label for="inputCity" class="col-md-2 control-label">City:</label>
+          <div class="input-group has-feedback">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputCity" name="inputCity" placeholder="City" ng-model="user.address.city" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputCity.$invalid && (editForm.$submitted || editForm.inputCity.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-home"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputStreet.$invalid && (editForm.$submitted || editForm.inputStreet.$touched), 'has-success' : editForm.inputStreet.$valid && editForm.inputStreet.$touched}">
+          <label for="inputStreet" class="col-md-2 control-label">Street:</label>
+          <div class="input-group has-feedback">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputStreet" name="inputStreet" placeholder="Street"  ng-model="user.address.street" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputStreet.$invalid && (editForm.$submitted || editForm.inputStreet.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-map-marker"></span>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error':editForm.inputZip.$invalid && (editForm.$submitted || editForm.inputZip.$touched), 'has-success' : editForm.inputZip.$valid && editForm.inputZip.$touched}">
+          <label for="inputZip" class="col-md-2 control-label">Zip:</label>
+          <div class="input-group">
+            <!--TODO: Popover-->
+            <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="Zip"  ng-model="user.address.zip" ng-minlength="1">
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="editForm.inputZip.$invalid && (editForm.$submitted || editForm.inputZip.$touched)"></span>
+            <span class="input-group-addon glyphicon glyphicon-barcode"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary">Save <span class="glyphicon glyphicon-floppy-save"></span></button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-danger" ng-click="deleteUser()">Delete <span class="glyphicon glyphicon-trash"></span></button>
+      </div>
+    </div>
+  </form>
+</div>
