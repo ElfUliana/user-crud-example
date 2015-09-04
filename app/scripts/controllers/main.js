@@ -29,9 +29,9 @@ angular.module('Application')
       }
 
       // TODO: Debug statements. Remove!!!
-      this.loaded.push(UserRepository.sampleUser());
-      this.paging.complete = this.loaded.length > 5;
-      return this;
+      //this.loaded.push(UserRepository.sampleUser());
+      //this.paging.complete = this.loaded.length > 5;
+      //return this;
 
       this.paging.disabled = true;
       UserRepository.getUsers(

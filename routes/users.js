@@ -66,7 +66,7 @@ router.post('/', function(req, res) {
             var person = req.body;
             person.id = shortid.generate();
             storage.setItem(person.id, req.body, function (err) {
-                err ? res.send(500, err) : res.send(201, person.id);
+                err ? res.send(500, err) : res.send(201, {"id:": person.id});
                 storage.persist();
             });
         }

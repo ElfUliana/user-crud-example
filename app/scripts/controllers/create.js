@@ -12,7 +12,9 @@ angular.module('Application')
     $scope.user = UserRepository.newUser();
     $scope.createUser = function(form){
       if (form.$valid) {
-        $scope.user.$save();
+        $scope.user.$save(function (data) {
+          angular.extend($scope.user, data);
+        });
       }
     }
   }]);

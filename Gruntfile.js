@@ -1,6 +1,8 @@
 // Generated on 2015-06-29 using generator-angular 0.11.1
 'use strict';
 
+var path = require('path');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -8,6 +10,9 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+
+  // load all grunt tasks
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -28,70 +33,59 @@ module.exports = function (grunt) {
     yeoman: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
-    watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
-      js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
-      },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
-      },
-      livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        },
-        files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
-      }
-    },
+    //watch: {
+    //  bower: {
+    //    files: ['bower.json'],
+    //    tasks: ['wiredep']
+    //  },
+    //  js: {
+    //    files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+    //    tasks: ['newer:jshint:all'],
+    //    options: {
+    //      livereload: '<%= express.options.livereload %>'
+    //    }
+    //  },
+    //  jsTest: {
+    //    files: ['test/spec/{,*/}*.js'],
+    //    tasks: ['newer:jshint:test', 'karma']
+    //  },
+    //  styles: {
+    //    files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+    //    tasks: ['newer:copy:styles', 'autoprefixer']
+    //  },
+    //  gruntfile: {
+    //    files: ['Gruntfile.js']
+    //  },
+    //  livereload: {
+    //    options: {
+    //      livereload: '<%= express.options.livereload %>'
+    //    },
+    //    files: [
+    //      '<%= yeoman.app %>/{,*/}*.html',
+    //      '.tmp/styles/{,*/}*.css',
+    //      '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+    //    ]
+    //  }
+    //},
 
     // The actual grunt server settings
-    connect: {
+    express: {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
+        server: path.resolve(__dirname, './app.js'),
         livereload: 35729
       },
       livereload: {
         options: {
-          open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
+          serverreload: true,
+          bases: [path.resolve('.tmp'), path.resolve(__dirname, appConfig.app)]
         }
       },
       test: {
         options: {
+          bases: [path.resolve('.tmp'), path.resolve(__dirname, 'test')],
           port: 9001,
           middleware: function (connect) {
             return [
@@ -100,16 +94,16 @@ module.exports = function (grunt) {
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              )//,
+              //connect.static(appConfig.app)
             ];
           }
         }
       },
       dist: {
         options: {
-          open: true,
-          base: '<%= yeoman.dist %>'
+          port: 9002,
+          bases: path.resolve(__dirname, appConfig.dist)
         }
       }
     },
@@ -178,7 +172,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
-        src: ['<%= yeoman.app %>/index.html'],
+        src: ['<%= yeoman.app %>/layout.hbs'],
         ignorePath:  /\.\.\//
       },
       test: {
@@ -215,7 +209,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+      html: '<%= yeoman.app %>/index.hbs',
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -232,7 +226,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.hbs'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: [
@@ -325,7 +319,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/*.hbs']
       }
     },
 
@@ -340,8 +334,8 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
+            '*.hbs',
+            'views/{,*/}*.hbs',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
@@ -392,7 +386,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'express:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -400,7 +394,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
-      'connect:livereload',
+      'express:livereload',
       'watch'
     ]);
   });
@@ -415,7 +409,7 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
+    'express:test',
     'karma'
   ]);
 
@@ -439,6 +433,11 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
-    'build'
+    'build',
+    'grunt-express'
   ]);
+
+  grunt.registerTask('default', ['express']);
+
+  grunt.registerTask('appServer', ['express', 'express-keepalive']);
 };
