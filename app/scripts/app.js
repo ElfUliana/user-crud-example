@@ -16,8 +16,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'internationalPhoneNumber'
-  ])//TODO: Add UserRepository service
+    'internationalPhoneNumber',
+    'infinite-scroll',
+    'dataRepositories'
+  ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

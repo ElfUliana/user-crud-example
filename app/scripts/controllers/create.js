@@ -8,9 +8,11 @@
  * Controller of the Application
  */
 angular.module('Application')
-  .controller('CreateCtrl', function ($scope) {
-    $scope.user = {"name":null,"email":null,"phone":null,"id":null,"address":{"state":null, "city":null, "street":null, "zip":null}};
-    $scope.createUser = function(){
-      console.log($scope.user);
+  .controller('CreateCtrl', ['$scope', 'UserRepository', function ($scope, UserRepository) {
+    $scope.user = UserRepository.newUser();
+    $scope.createUser = function(form){
+      if (form.$valid) {
+        $scope.user.$save();
+      }
     }
-  });
+  }]);
